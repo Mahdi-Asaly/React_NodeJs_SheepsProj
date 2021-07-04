@@ -5,11 +5,13 @@ import cors from 'cors';
 import postRoutes from './routes/posts.js'
 const app = express();
 
-app.use('/posts',postRoutes);
+
 
 app.use(bodyParser.json({limit:"30mb", extended:true}));
 app.use(bodyParser.urlencoded({limit:"30mb", extended:true}));
 app.use(cors());
+//it should be here
+app.use('/posts',postRoutes);
 
 const CONNECTION_URL = 'mongodb+srv://myprojects:Bb123123@cluster0.wwybj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 // mongoDB connection
