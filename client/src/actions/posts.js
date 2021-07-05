@@ -33,3 +33,16 @@ export const updatePost = (id, post) => async (dispatch) =>{
         console.log(err);
     }
 }
+
+
+//remove
+export const deletePost = (id) => async (dispatch) =>{
+
+    try{
+        await api.deletePost(id); //we dont need to use const data because we dont want the responde data we only want to delete it.
+        dispatch({type:'DELETE',payload: id});
+    }
+    catch(err){
+        console.log(err);
+    }
+}
