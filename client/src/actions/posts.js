@@ -21,3 +21,15 @@ export const createPost = (post) => async (dispatch) => {
         console.log(err);
     }
 }
+
+//update
+export const updatePost = (id, post) => async (dispatch) =>{
+
+    try{
+        const {data} = await api.updatePost(id,post); //returning the updated memory/post (sheep)
+        dispatch({type:'UPDATE', payload:data});
+    }
+    catch(err){
+        console.log(err);
+    }
+}

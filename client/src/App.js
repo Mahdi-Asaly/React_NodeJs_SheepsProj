@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 
 
 import Grid from '@material-ui/core/Grid';
@@ -15,12 +15,15 @@ import Form from './components/Form/Form';
 import memories from './images/memories.png';
 import useStyles from './styles';
 const App= ()=>{
+    const [currentId, setCurrentId] = useState(null); //redux part
     const classes = useStyles();
     const dispatch =  useDispatch();
 
     useEffect(()=>{
         dispatch(getPosts());
-    }, [dispatch]);
+        //as soon we change the currentId the dispatch called 
+        //now in dispatch we want that when something updated we see the result Imediatally without waiting so we add current id to dispatch
+    }, [currentId,dispatch]);
 
     return(
         <Container maxidth="lg">
@@ -30,12 +33,12 @@ const App= ()=>{
             </AppBar>
             <Grow in>
                 <Container>
-                    <Grid container justify="space-between" alignItems="strech" spacing={3}>
+                    <Grid container justify="space-between" alignItems="stretch" spacing={3}>
                                 <Grid item xs={12} sm={7}>
-                                    <Posts/>
+                                    <Posts setCurrentId={setCurrentId}/>
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
-                                    <Form/>
+                                    <Form currentId={currentId} setCurrentId={setCurrentId}/>
                                 </Grid>
                     </Grid>
                 </Container>
