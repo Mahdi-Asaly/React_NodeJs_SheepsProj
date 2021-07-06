@@ -8,11 +8,11 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import { useSelector } from 'react-redux';
-
+import { TextArea } from "@progress/kendo-react-inputs";
 
 
 const Form= ({currentId, setCurrentId})=>{
-    const [postData,setPostData] = useState({shpBlood: '', shpId:'',shpGender:'',tags:'',selectedFile:''});
+    const [postData,setPostData] = useState({shpBlood: '', shpId:'',shpGender:'',tags:'',info:''});
     const post =  useSelector((state)=> currentId? state.posts.find((p)=>p._id === currentId): null);//fetch data from redux
     const classes = useStyles();
     const dispatch= useDispatch();
@@ -38,7 +38,7 @@ const Form= ({currentId, setCurrentId})=>{
 
     const clear =()=>{
         setCurrentId(null) //clear the cur id to clear
-        setPostData({shpBlood: '', shpId:'',shpGender:'',tags:'',selectedFile:''}); //empty string reset
+        setPostData({shpBlood: '', shpId:'',shpGender:'',tags:'',info:''}); //empty string reset
     }
 
     //gender radio button
@@ -53,6 +53,7 @@ const Form= ({currentId, setCurrentId})=>{
         postData.shpBlood= event.target.value;
         setValue(event.target.value);
     };
+
 
     return (
         <Paper className={classes.paper}>
@@ -75,21 +76,33 @@ const Form= ({currentId, setCurrentId})=>{
                     value={postData.tags}
                     onChange={(e)=>setPostData({ ...postData, tags: e.target.value })}
                  />
-                 <div className={classes.fileInput}>
-                 <FormLabel component="legend">Gender</FormLabel>
-                    <RadioGroup aria-label="gender" name="gender1" value={postData.shpGender} onChange={handleChangeGender}>
-                        <FormControlLabel value="Female" control={<Radio />} label="Female" />
-                        <FormControlLabel value="Male" control={<Radio />} label="Male" />
-                    </RadioGroup>
 
-                    <FormLabel component="legend">Blood</FormLabel>
-                    <RadioGroup aria-label="blood" name="blood1" value={postData.shpBlood} onChange={handleChangeBlood}>
-                        <FormControlLabel value="BB" control={<Radio />} label="BB" />
-                        <FormControlLabel value="B+" control={<Radio />} label="B+" />
-                    </RadioGroup>
-                    <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Add</Button>
-                    <Button  variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+                <TextField
+                    name="info" 
+                    variant="outlined"
+                    label="info"
+                    fullWidth
+                    placeholder="Sheep Information can be written here."
+                    value={postData.info}
+                    onChange={(e)=>setPostData({ ...postData, info: e.target.value })}
+                 />
+
+
+                 <div className={classes.fileInput}>
+                    <FormLabel component="legend">Gender</FormLabel>
+                        <RadioGroup aria-label="gender" name="gender1" value={postData.shpGender} onChange={handleChangeGender}>
+                            <FormControlLabel value="Female" control={<Radio />} label="Female" />
+                            <FormControlLabel value="Male" control={<Radio />} label="Male" />
+                        </RadioGroup>
+                        <FormLabel component="legend">Blood</FormLabel>
+                        <RadioGroup aria-label="blood" name="blood1" value={postData.shpBlood} onChange={handleChangeBlood}>
+                            <FormControlLabel value="BB" control={<Radio />} label="BB" />
+                            <FormControlLabel value="B+" control={<Radio />} label="B+" />
+                        </RadioGroup>
                  </div>
+
+                <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
+                <Button  variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
             </form>
         </Paper>
     );

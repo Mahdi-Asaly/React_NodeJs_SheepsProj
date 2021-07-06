@@ -6,10 +6,7 @@ const postSchema =  mongoose.Schema({
  shpBlood:String,
  tags:[String],
  selectedFile: String,
- likeCount:{
-     type:Number,
-     default: 0
- },
+ info:String,
  createdAt:{
      type:Date,
      default: new Date()

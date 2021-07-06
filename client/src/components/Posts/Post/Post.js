@@ -40,6 +40,11 @@ const Post= ({post, setCurrentId})=>{
                     gutterButtom> 
                     {post.shpId}
             </Typography> 
+            <Typography className={classes.title}
+                    variant="h6"
+                    gutterButtom> 
+                    {post.info}
+            </Typography> 
             <CardContent>
                     <Typography
                     variant="body2"

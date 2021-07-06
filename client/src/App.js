@@ -50,8 +50,7 @@ const App= ()=>{
                     >
                     <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" className={classes.title}>
-                    My Sheeps Manager
+                    <Typography variant="h6" gutterBottom  style={{ fontFamily: "Spicy Rice", color: "black" }}> My REACT - Sheeps Manager
                     </Typography>
             </Toolbar>
             
