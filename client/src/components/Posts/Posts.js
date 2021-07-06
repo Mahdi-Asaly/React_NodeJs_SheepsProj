@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, CircularProgress } from '@material-ui/core';
 import { useSelector } from 'react-redux';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import Post from './Post/Post';
 import useStyles from './styles';
@@ -12,7 +13,7 @@ const Posts= ({setCurrentId})=>{
 
     return (
         //if not posts yet do circular progress showing
-        !posts.length ? <CircularProgress/> :( //else
+        !posts.length ?<LinearProgress color="secondary" /> :( //else
             //then show the posts
             <Grid className={classes.container} container alignItems="strech" spacing={3}>
                 {

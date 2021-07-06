@@ -1,21 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import { TextField, Button ,Typography, Paper} from '@material-ui/core';
-
 import useStyles from './styles';
 import {createPost,updatePost} from '../../actions/posts';
-import FileBase from 'react-file-base64';
 import {useDispatch} from 'react-redux';
-
-//import { typography } from '@material-ui/system';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-
 import { useSelector } from 'react-redux';
 
-//GET THE CURRENT ID OF POST
+
 
 const Form= ({currentId, setCurrentId})=>{
     const [postData,setPostData] = useState({shpBlood: '', shpId:'',shpGender:'',tags:'',selectedFile:''});
@@ -63,7 +57,7 @@ const Form= ({currentId, setCurrentId})=>{
     return (
         <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}> 
-                <Typography variant="h6">{currentId? 'Editing' : 'Creating'} a Sheep
+                <Typography variant="h6" gutterBottom  style={{ fontFamily: "Spicy Rice", color: "green" }}>{currentId? 'Editing' : 'Creating'} a Sheep
                 </Typography>
                 <TextField
                     name="shpId" 
@@ -81,7 +75,8 @@ const Form= ({currentId, setCurrentId})=>{
                     value={postData.tags}
                     onChange={(e)=>setPostData({ ...postData, tags: e.target.value })}
                  />
-                    <FormLabel component="legend">Gender</FormLabel>
+                 <div className={classes.fileInput}>
+                 <FormLabel component="legend">Gender</FormLabel>
                     <RadioGroup aria-label="gender" name="gender1" value={postData.shpGender} onChange={handleChangeGender}>
                         <FormControlLabel value="Female" control={<Radio />} label="Female" />
                         <FormControlLabel value="Male" control={<Radio />} label="Male" />
@@ -92,12 +87,7 @@ const Form= ({currentId, setCurrentId})=>{
                         <FormControlLabel value="BB" control={<Radio />} label="BB" />
                         <FormControlLabel value="B+" control={<Radio />} label="B+" />
                     </RadioGroup>
-                 <div className={classes.fileInput}>
-                    <FileBase type="file" 
-                    multiple={false} 
-                    onDone={ ({base64})=> setPostData( {...postData, selectedFile:base64})}
-                    />
-                    <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
+                    <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Add</Button>
                     <Button  variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
                  </div>
             </form>
