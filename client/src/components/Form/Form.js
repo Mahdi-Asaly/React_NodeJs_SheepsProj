@@ -8,7 +8,6 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import { useSelector } from 'react-redux';
-import { TextArea } from "@progress/kendo-react-inputs";
 
 
 const Form= ({currentId, setCurrentId})=>{
@@ -65,6 +64,7 @@ const Form= ({currentId, setCurrentId})=>{
                     variant="outlined"
                     label="ID"
                     fullWidth
+                    placeholder="Write here sheep id"
                     value={postData.shpId}
                     onChange={(e)=>setPostData({...postData, shpId: e.target.value})}
                  />
@@ -73,6 +73,7 @@ const Form= ({currentId, setCurrentId})=>{
                     variant="outlined"
                     label="Tags"
                     fullWidth
+                    placeholder="Write here sheep tag/number"
                     value={postData.tags}
                     onChange={(e)=>setPostData({ ...postData, tags: e.target.value })}
                  />
@@ -82,7 +83,7 @@ const Form= ({currentId, setCurrentId})=>{
                     variant="outlined"
                     label="info"
                     fullWidth
-                    placeholder="Sheep Information can be written here."
+                    placeholder="Sheep information can be written here."
                     value={postData.info}
                     onChange={(e)=>setPostData({ ...postData, info: e.target.value })}
                  />

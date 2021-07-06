@@ -8,6 +8,7 @@ import moment from 'moment';
 import useStyles from './styles';
 import img from '../../../images/sheepPost.png'
 
+
 const Post= ({post, setCurrentId})=>{
     const classes = useStyles();
     const dispatch = useDispatch();

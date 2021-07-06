@@ -16,20 +16,16 @@ import Form from './components/Form/Form';
 import sheepsImg from './images/W-Sheep-header.jpg';
 import useStyles from './styles';
 
-
-
+import DataTable from './components/DataTable/DataTable';
 const App= ()=>{
     const [currentId, setCurrentId] = useState(null); //redux part
     const classes = useStyles();
     const dispatch =  useDispatch();
 
-
-
     const MenuBar = ()=>{
         console.log('hello')
 
     }
-
 
     useEffect(()=>{
         dispatch(getPosts());
@@ -67,12 +63,12 @@ const App= ()=>{
                                 </Grid>
                     </Grid>
                 </Container>
-
-
-
             </Grow>
-
+            <div className="App">
+                       <DataTable />
+            </div> 
         </Container>
+
     )
 }
 
