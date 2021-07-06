@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 //GET THE CURRENT ID OF POST
 
 const Form= ({currentId, setCurrentId})=>{
-    const [postData,setPostData] = useState({creator: '', title:'',message:'',tags:'',selectedFile:''});
+    const [postData,setPostData] = useState({shpBlood: '', shpId:'',shpGender:'',tags:'',selectedFile:''});
     const post =  useSelector((state)=> currentId? state.posts.find((p)=>p._id === currentId): null);//fetch data from redux
     const classes = useStyles();
     const dispatch= useDispatch();
@@ -40,7 +40,7 @@ const Form= ({currentId, setCurrentId})=>{
 
     const clear =()=>{
         setCurrentId(null) //clear the cur id to clear
-        setPostData({creator: '', title:'',message:'',tags:'',selectedFile:''}); //empty string reset
+        setPostData({shpBlood: '', shpId:'',shpGender:'',tags:'',selectedFile:''}); //empty string reset
     }
 
     return (
@@ -49,28 +49,28 @@ const Form= ({currentId, setCurrentId})=>{
                 <Typography variant="h6">{currentId? 'Editing' : 'Creating'} a Sheep
                 </Typography>
                 <TextField
-                    name="creator" 
+                    name="shpBlood" 
                     variant="outlined"
-                    label="Creator"
+                    label="Blood"
                     fullWidth
-                    value={postData.creator}
-                    onChange={(e)=>setPostData({...postData, creator: e.target.value})}
+                    value={postData.shpBlood}
+                    onChange={(e)=>setPostData({...postData, shpBlood: e.target.value})}
                  />
                 <TextField
-                    name="title" 
+                    name="shpId" 
                     variant="outlined"
-                    label="Title"
+                    label="ID"
                     fullWidth
-                    value={postData.title}
-                    onChange={(e)=>setPostData({...postData, title: e.target.value})}
+                    value={postData.shpId}
+                    onChange={(e)=>setPostData({...postData, shpId: e.target.value})}
                  />
                 <TextField
-                    name="message" 
+                    name="shpGender" 
                     variant="outlined"
-                    label="Message"
+                    label="Gender"
                     fullWidth
-                    value={postData.message}
-                    onChange={(e)=>setPostData({ ...postData, message: e.target.value})}
+                    value={postData.shpGender}
+                    onChange={(e)=>setPostData({ ...postData, shpGender: e.target.value})}
                  />
                 <TextField
                     name="tags" 

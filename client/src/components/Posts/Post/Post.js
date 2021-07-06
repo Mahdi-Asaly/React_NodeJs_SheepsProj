@@ -13,7 +13,7 @@ const Post= ({post, setCurrentId})=>{
         <Card className={classes.card}>
             <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>
             <div className={classes.overlay}>
-                <Typography variant="h6"> {post.creator}
+                <Typography variant="h6"> {post.shpBlood}
                 </Typography>
                 <Typography variant="body2"> {moment(post.createdAt).fromNow()}
                 </Typography>
@@ -36,13 +36,13 @@ const Post= ({post, setCurrentId})=>{
             <Typography className={classes.title}
                     variant="h5"
                     gutterButtom> 
-                    {post.title}
+                    {post.shpId}
             </Typography> 
             <CardContent>
                     <Typography
                     variant="body2"
                     color="textSecondary"> 
-                    {post.message}
+                    {post.shpGender}
                     </Typography> 
             </CardContent>  
             <CardActions className={classes.cardActions}>
