@@ -7,7 +7,11 @@ import FileBase from 'react-file-base64';
 import {useDispatch} from 'react-redux';
 
 //import { typography } from '@material-ui/system';
-
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 import { useSelector } from 'react-redux';
 
@@ -43,19 +47,24 @@ const Form= ({currentId, setCurrentId})=>{
         setPostData({shpBlood: '', shpId:'',shpGender:'',tags:'',selectedFile:''}); //empty string reset
     }
 
+    //gender radio button
+    const [value, setValue] = React.useState('Female');
+    const handleChangeGender = (event) => {
+        postData.shpGender= event.target.value;
+        setValue(event.target.value);
+    };
+
+    //Blood radio button
+    const handleChangeBlood = (event) => {
+        postData.shpBlood= event.target.value;
+        setValue(event.target.value);
+    };
+
     return (
         <Paper className={classes.paper}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}> 
                 <Typography variant="h6">{currentId? 'Editing' : 'Creating'} a Sheep
                 </Typography>
-                <TextField
-                    name="shpBlood" 
-                    variant="outlined"
-                    label="Blood"
-                    fullWidth
-                    value={postData.shpBlood}
-                    onChange={(e)=>setPostData({...postData, shpBlood: e.target.value})}
-                 />
                 <TextField
                     name="shpId" 
                     variant="outlined"
@@ -65,14 +74,6 @@ const Form= ({currentId, setCurrentId})=>{
                     onChange={(e)=>setPostData({...postData, shpId: e.target.value})}
                  />
                 <TextField
-                    name="shpGender" 
-                    variant="outlined"
-                    label="Gender"
-                    fullWidth
-                    value={postData.shpGender}
-                    onChange={(e)=>setPostData({ ...postData, shpGender: e.target.value})}
-                 />
-                <TextField
                     name="tags" 
                     variant="outlined"
                     label="Tags"
@@ -80,6 +81,17 @@ const Form= ({currentId, setCurrentId})=>{
                     value={postData.tags}
                     onChange={(e)=>setPostData({ ...postData, tags: e.target.value })}
                  />
+                    <FormLabel component="legend">Gender</FormLabel>
+                    <RadioGroup aria-label="gender" name="gender1" value={postData.shpGender} onChange={handleChangeGender}>
+                        <FormControlLabel value="Female" control={<Radio />} label="Female" />
+                        <FormControlLabel value="Male" control={<Radio />} label="Male" />
+                    </RadioGroup>
+
+                    <FormLabel component="legend">Blood</FormLabel>
+                    <RadioGroup aria-label="blood" name="blood1" value={postData.shpBlood} onChange={handleChangeBlood}>
+                        <FormControlLabel value="BB" control={<Radio />} label="BB" />
+                        <FormControlLabel value="B+" control={<Radio />} label="B+" />
+                    </RadioGroup>
                  <div className={classes.fileInput}>
                     <FileBase type="file" 
                     multiple={false} 
