@@ -6,12 +6,14 @@ import {useDispatch} from 'react-redux';
 import {deletePost} from '../../../actions/posts';
 import moment from 'moment';
 import useStyles from './styles';
+import img from '../../../images/sheepPost.png'
+
 const Post= ({post, setCurrentId})=>{
     const classes = useStyles();
     const dispatch = useDispatch();
     return (
         <Card className={classes.card}>
-            <CardMedia className={classes.media} image={post.selectedFile} title={post.title}/>
+            <CardMedia className={classes.media} image={img} title={post.title}/>
             <div className={classes.overlay}>
                 <Typography variant="h6"> {post.shpBlood}
                 </Typography>

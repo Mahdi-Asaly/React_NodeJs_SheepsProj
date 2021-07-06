@@ -15,10 +15,14 @@ import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import sheepsImg from './images/W-Sheep-header.jpg';
 import useStyles from './styles';
+
+
+
 const App= ()=>{
     const [currentId, setCurrentId] = useState(null); //redux part
     const classes = useStyles();
     const dispatch =  useDispatch();
+
 
 
     const MenuBar = ()=>{
@@ -64,7 +68,11 @@ const App= ()=>{
                                 </Grid>
                     </Grid>
                 </Container>
+
+
+
             </Grow>
+
         </Container>
     )
 }
