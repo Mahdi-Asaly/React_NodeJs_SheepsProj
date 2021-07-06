@@ -6,18 +6,26 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
 import Grow from '@material-ui/core/Grow';
-
+import { Toolbar,IconButton } from '@material-ui/core';
+import MenuIcon from "@material-ui/icons/Menu";
 import {useDispatch} from 'react-redux'
 
 import {getPosts} from './actions/posts';
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
-import memories from './images/memories.png';
+import sheepsImg from './images/W-Sheep-header.jpg';
 import useStyles from './styles';
 const App= ()=>{
     const [currentId, setCurrentId] = useState(null); //redux part
     const classes = useStyles();
     const dispatch =  useDispatch();
+
+
+    const MenuBar = ()=>{
+        console.log('hello')
+
+    }
+
 
     useEffect(()=>{
         dispatch(getPosts());
@@ -26,11 +34,25 @@ const App= ()=>{
     }, [currentId,dispatch]);
 
     return(
-        <Container maxidth="lg">
+        <Container maxidth="lg" style={{ backgroundImage: `url(${sheepsImg})` }}>
             <AppBar className={classes.AppBar} position="static" color="inherit">
-                <Typography className={classes.heading} variant="h2" align="center">Memories</Typography>
-                <img className={classes.image} src={memories}  alt="memories" height="60"/>
+            <Toolbar>
+                    <IconButton 
+                    edge="start" 
+                    className={classes.menuButton} 
+                    color="inherit" 
+                    aria-label="menu"
+                    onClick={MenuBar}
+                    >
+                    <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" className={classes.title}>
+                    My Sheeps Manager
+                    </Typography>
+            </Toolbar>
+            
             </AppBar>
+            ~{"\n"}
             <Grow in>
                 <Container>
                     <Grid container justify="space-between" alignItems="stretch" spacing={3}>
