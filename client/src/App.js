@@ -1,32 +1,37 @@
 import React, {useState, useEffect} from 'react';
-
-
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import AppBar from '@material-ui/core/AppBar';
 import Grow from '@material-ui/core/Grow';
-import { Toolbar,IconButton } from '@material-ui/core';
+import { Toolbar,IconButton, Button } from '@material-ui/core';
 import MenuIcon from "@material-ui/icons/Menu";
 import {useDispatch} from 'react-redux'
-
 import {getPosts} from './actions/posts';
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import sheepsImg from './images/W-Sheep-header.jpg';
 import useStyles from './styles';
-
 import DataTable from './components/DataTable/DataTable';
+
+
 const App= ()=>{
     const [currentId, setCurrentId] = useState(null); //redux part
     const classes = useStyles();
     const dispatch =  useDispatch();
 
-    const MenuBar = ()=>{
-        console.log('hello')
+    const hideTable = () => {
+        console.log('hiding table');
+        const d=document.getElementById('table');
+        d.innerHTML= "";
+    };
 
-    }
+    const showTable = () => {
+        console.log('showing table');
+        const d=document.getElementById('table');
 
+    };
+    
     useEffect(()=>{
         dispatch(getPosts());
         //as soon we change the currentId the dispatch called 
@@ -36,18 +41,30 @@ const App= ()=>{
     return(
         <Container maxidth="lg" style={{ backgroundImage: `url(${sheepsImg})` }}>
             <AppBar className={classes.AppBar} position="static" color="inherit">
-            <Toolbar>
+            <Toolbar style={{backgroundColor:"" }}>
                     <IconButton 
                     edge="start" 
                     className={classes.menuButton} 
                     color="inherit" 
                     aria-label="menu"
-                    onClick={MenuBar}
+                    onClick={()=>{}}
                     >
                     <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" gutterBottom  style={{ fontFamily: "Spicy Rice", color: "black" }}> My REACT - Sheeps Manager
+                    <Typography variant="h6" gutterBottom  style={{ fontFamily: "Spicy Rice", color: "green" }}> Sheeps Manager
                     </Typography>
+                    -
+                    <Button 
+                    color="secondary"
+                    onClick={hideTable}
+                    >Cards
+                    </Button>
+
+                    <Button 
+                    color="secondary"
+                    onClick={showTable}
+                    >Table
+                    </Button>
             </Toolbar>
             
             </AppBar>
@@ -64,8 +81,9 @@ const App= ()=>{
                     </Grid>
                 </Container>
             </Grow>
-            <div className="App">
-                       <DataTable />
+            ~{"\n"}
+            <div className="App" id="table">
+                <DataTable />    
             </div> 
         </Container>
 
