@@ -44,7 +44,7 @@ const rows = [
 export default function DataGridDemo() {
   return (
     <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
+      <DataGrid 
         rows={rows}
         columns={columns}
         pageSize={5}

@@ -20,24 +20,13 @@ const App= ()=>{
     const classes = useStyles();
     const dispatch =  useDispatch();
 
-    const hideTable = () => {
-        console.log('hiding table');
-        const d=document.getElementById('table');
-        d.innerHTML= "";
-    };
-
-    const showTable = () => {
-        console.log('showing table');
-        const d=document.getElementById('table');
-
-    };
+    const [MyView,setMyView] = useState("Cards");
     
     useEffect(()=>{
         dispatch(getPosts());
         //as soon we change the currentId the dispatch called 
         //now in dispatch we want that when something updated we see the result Imediatally without waiting so we add current id to dispatch
     }, [currentId,dispatch]);
-
     return(
         <Container maxidth="lg" style={{ backgroundImage: `url(${sheepsImg})` }}>
             <AppBar className={classes.AppBar} position="static" color="inherit">
@@ -51,18 +40,19 @@ const App= ()=>{
                     >
                     <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" gutterBottom  style={{ fontFamily: "Spicy Rice", color: "green" }}> Sheeps Manager
+                    <Typography variant="h6" gutterBottom  style={{ fontFamily: "Spicy Rice", color: "green" }}> Sheeps Manager - 
                     </Typography>
-                    -
+
+
                     <Button 
                     color="secondary"
-                    onClick={hideTable}
+                    onClick={() => setMyView("Cards")}
                     >Cards
                     </Button>
 
                     <Button 
                     color="secondary"
-                    onClick={showTable}
+                    onClick={() => setMyView("Table")}
                     >Table
                     </Button>
             </Toolbar>
@@ -73,7 +63,8 @@ const App= ()=>{
                 <Container>
                     <Grid container justify="space-between" alignItems="stretch" spacing={3}>
                                 <Grid item xs={12} sm={7}>
-                                    <Posts setCurrentId={setCurrentId}/>
+                                    {MyView === "Cards" && <Posts setCurrentId={setCurrentId} />}
+                                    {MyView === "Table" && <DataTable/>}
                                 </Grid>
                                 <Grid item xs={12} sm={4}>
                                     <Form currentId={currentId} setCurrentId={setCurrentId}/>
@@ -81,10 +72,6 @@ const App= ()=>{
                     </Grid>
                 </Container>
             </Grow>
-            ~{"\n"}
-            <div className="App" id="table">
-                <DataTable />    
-            </div> 
         </Container>
 
     )
