@@ -19,7 +19,6 @@ const App= ()=>{
     const [currentId, setCurrentId] = useState(null); //redux part
     const classes = useStyles();
     const dispatch =  useDispatch();
-
     const [MyView,setMyView] = useState("Cards");
     
     useEffect(()=>{
@@ -53,7 +52,7 @@ const App= ()=>{
                     <Button 
                     color="secondary"
                     onClick={() => setMyView("Table")}
-                    >Table
+                    >Table (Demo Version)
                     </Button>
             </Toolbar>
             

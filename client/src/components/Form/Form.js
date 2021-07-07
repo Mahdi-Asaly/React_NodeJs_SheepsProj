@@ -11,6 +11,9 @@ import { useSelector } from 'react-redux';
 
 
 const Form= ({currentId, setCurrentId})=>{
+    console.log('print currentId')
+    console.log(currentId);
+    console.log(setCurrentId);
     const [postData,setPostData] = useState({shpBlood: '', shpId:'',shpGender:'',tags:'',info:''});
     const post =  useSelector((state)=> currentId? state.posts.find((p)=>p._id === currentId): null);//fetch data from redux
     const classes = useStyles();
