@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 
+
+
 const columns = [
   { field: 'id', headerName: 'ID', width: 90 },
   {
@@ -42,9 +44,11 @@ const rows = [
 ];
 
 export default function DataGridDemo() {
+
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 400, width: '100%', background:'#EFF5D5' }}>
       <DataGrid 
+        
         rows={rows}
         columns={columns}
         pageSize={5}
